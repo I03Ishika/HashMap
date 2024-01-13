@@ -1,0 +1,92 @@
+// class Solution {
+//     public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+//         HashMap<Integer, Integer> hm1 = new HashMap<>();
+//         HashMap<Integer, Integer> hm2 = new HashMap<>();
+
+//         for(int i=0; i<nums1.length; i++)
+//         {
+//             if(hm1.containsKey(nums1[i])){
+//                 int of = hm1.get(nums1[i]);
+//                 int nf = of + 1;
+//                 hm1.put(nums1[i], nf);
+//             }else{
+//                 hm1.put(nums1[i], 1);
+//             }
+//         }
+
+
+//         for(int i=0; i<nums2.length; i++)
+//         {
+//             if(hm2.containsKey(nums2[i])){
+//                 int of = hm2.get(nums2[i]);
+//                 int nf = of + 1;
+//                 hm2.put(nums2[i], nf);
+//             }else{
+//                 hm2.put(nums2[i], 1);
+//             }
+//         }
+
+//         for(int val : nums2){
+//             if(hm1.containsKey(maxf2)){
+//                 count++;
+//             }
+//         }
+    
+//     }
+// }
+
+
+class Solution {
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        int l=0,r=0;
+        int ans[] = new int[2];
+        for(int i=0;i<nums1.length;i++){
+            for(int j=0;j<nums2.length;j++){
+                if(nums1[i] == nums2[j]){
+                    l++;
+                    break;
+                }
+            }
+        }
+
+        for(int i=0;i<nums2.length;i++){
+            for(int j=0;j<nums1.length;j++){
+                if(nums2[i] == nums1[j]){
+                    r++;
+                    break;
+                }
+            }
+        }
+        ans[0] = l;
+        ans[1] = r;
+        return ans;
+    
+    }
+}
+
+
+/*************************** method-2 *******************************/
+class Solution {
+    public int[] findIntersectionValues(int[] nums1, int[] nums2) {
+        int[] arr = new int[2];
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
+        for(int n:nums1){
+            set1.add(n);
+        }
+        for(int n:nums2){
+            set2.add(n);
+        }
+        for(int n: nums1){
+            if(set2.contains(n)){
+                arr[0]++;
+            }
+        }
+        for(int n: nums2){
+            if(set1.contains(n)){
+                arr[1]++;
+            }
+        }
+        return arr;
+    }
+}
