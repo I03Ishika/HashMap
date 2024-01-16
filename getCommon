@@ -1,0 +1,67 @@
+class Solution {
+    public int getCommon(int[] nums1, int[] nums2) {
+        // HashMap<Integer, Integer> map1 = new HashMap<>();
+        // HashMap<Integer, Integer> map2 = new HashMap<>();
+
+        // for(int i=0; i<nums1.length;i++){
+        //     map1.put(nums1[i], map1.getOrDefault(nums1[i],0)+1);
+        // }
+
+        // int[] arr = new int[nums2.length];
+        // for(int i=0; i<nums2.length; i++){
+        //     if(map1.containsKey(nums2[i])){
+        //         for(int n=0; n<nums2.length; n++)
+        //         {
+        //             arr[n] = nums2[i];
+        //         }
+        //     }
+        // }
+
+        // Arrays.sort(arr);
+
+        // return arr[0];
+
+/*************************method - 2*****************************/
+        // for(int i=0; i<nums1.length; i++){
+        //     for(int j=0; j<nums2.length; j++){
+        //         if(nums1[i] == nums2[j]){
+        //             return nums1[i];
+        //         }
+        //     }
+        // }
+        // return 0;
+
+/*************************method - 3*****************************/
+        Set<Integer> st = new HashSet<>();
+        int res = -1;
+        for(int num : nums1){
+            st.add(num);
+        }
+        for(int num : nums2){
+            if(st.contains(num)){
+                res = num;
+                break;
+            }
+        }
+        return res;
+
+/*************************method - 3*****************************/
+        
+        class Solution {
+            public int getCommon(int[] nums1, int[] nums2) {
+                int i=0,j=0;
+                while(i<nums1.length && j<nums2.length){
+                    if(nums1[i]==nums2[j]){
+                        return nums1[i];
+                    }else if(nums1[i]>nums2[j]){
+                        j++;
+                    }else{
+                        i++;
+                }
+        }
+        return -1;
+    }
+}
+
+    }
+}
