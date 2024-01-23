@@ -1,0 +1,58 @@
+// class Solution {
+//     public boolean wordPattern(String pattern, String s) {
+//         HashMap<Character, Character> map1 = new HashMap<>();
+//         HashMap<Character, Boolean> map2 = new HashMap<>();
+//         String[] arr = new String[s.length()];
+//         for(int i=0; i<s.length(); i++){
+//             char ch1 = pattern.charAt(i);
+//             char ch2 = s.charAt(i);
+//             while(s.charAt(i) != ' '){
+//                 arr[i] = s.charAt(i);
+//                 i++;
+//             }
+//             i++;
+//             if(map1.containsKey(ch1) == true){
+//                 if(map1.get(ch1) != arr)
+//                 {return false;}
+//             }else{
+//                 if(map2.containsKey(arr) == true){
+//                     return true;
+//                 }else{
+//                     map1.put(ch1, arr);
+//                     map2.put(arr,true);
+//                 }
+//             }
+//         }
+//         return true;
+//     }
+// }
+
+class Solution {
+    public boolean wordPattern(String pattern, String s) {
+        HashMap<Character, String> map1 = new HashMap<>();
+        HashMap<String, Boolean> map2 = new HashMap<>();
+        String words[] = s.split(" ");
+        if(pattern.length() != words.length){
+            return false;
+        }
+        for(int i=0; i<pattern.length(); i++){
+            char ch = pattern.charAt(i);
+            if(map1.containsKey(ch) == false){
+                if(map2.containsKey(words[i]) == true){
+                    return false;
+                }
+                else{
+                    map2.put(words[i],true);
+                    map1.put(ch,words[i]);
+                }
+            }else{
+                String mapped_with = map1.get(ch);
+                if(mapped_with.equals(words[i]) == false){
+                    return false;
+                }
+            }
+        }
+        return true;
+
+    }
+}
